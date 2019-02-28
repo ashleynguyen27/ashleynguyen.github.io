@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>Ashley's Website - Mesh Editor</title>
+
+  <!-- Styles -->
+  <link href="../../assets/css/page.min.css" rel="stylesheet">
+  <link href="../../assets/css/style.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="../../assets/js/page.js"></script>
+  <script src="../../assets/js/script.js"></script>
+
+  <!-- Favicons -->
+  <!-- <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" href="assets/img/favicon.png"> -->
+
+  <!--  Open Graph Tags -->
+  <meta property="og:title" content="Ashley's website">
+  <meta property="og:description" content="Website all about Ashley">
+  <meta property="og:url" content="http://ashleynguyen27.github.io">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-stick-dark" data-navbar="sticky">
+    <div class="container">
+
+      <div class="navbar-left">
+        <button class="navbar-toggler" type="button">&#9776;</button>
+        <a class="navbar-brand" href="../../index.html">
+          <img width="50" src="../../assets/img/logo.png" alt="logo">
+        </a>
+      </div>
+
+
+      <section class="navbar-mobile ">
+        <!-- <span class="navbar-divider d-mobile-none"></span> -->
+
+        <ul class="nav nav-navbar">
+          <li class="nav-item">
+            <a class="nav-link" href="../computer_graphics.html">Computer Graphics</a>
+            <nav class="nav column">
+              <a class="nav-link" href="rasterizer.html">Rasterizer</a>
+              <a class="nav-link" href="mesh_editor.html">Mesh editor</a>
+            </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../design.html">Design Portfolio</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../blog.html">Blogs</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../resume.html">Resume </a>
+          </li>
+
+        </ul>
+      </section>
+    </div>
+  </nav>
+
+
+
+
+  <!-- Main Content -->
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="section">
+      <div class="container">
+
+
+        <div class="text-center mt-8">
+          <h1 style="font-family: 'Karla', sans-serif;">Project 2: Mesh Editor</h1>
+          <p>Ashley Nguyen | CS184-agh </p>
+        </div>
+
+        <div class="text-center my-8">
+          <img class="rounded-md" src="../../assets/img/cs184/proj_2/overview.jpg" alt="...">
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+
+            <h1 align="left">Overview</h1>
+            <p>In this project, I learned to build Bezier Curves and surfaces using de Casteljau's algorithm, manipulated half-edge meshes, and implemented loop subdivision! By the end of this project, I was able to load and edit basic COLLADA mesh
+              files. This project was interesting because I was able to see how industry 3D modeling programs create smooth surfaces for object meshes.
+            </p>
+            <h1 align="left">Section I: Bezier Curves and Surfaces</h1>
+            <p>
+              In this section of the project, I work on Bezier curves and surfaces. In computer graphics, Bezier curves and surfaces are parametric curves and surfaces that are frequently used to model smooth and indefinitely scalable curves and
+              surfaces.
+            </p>
+            <div class="text-center ">
+              <img class=" w-100 rounded" src="../../assets/img/cs184/proj_2/section1_pic.jpeg" alt="" width="400">
+              <p class="small opacity-50">A Bezier Curve</p>
+            </div>
+            <h2 align="left">Part 1: Bezier curves with 1D de Casteljau subdivision</h2>
+
+            <p>A Bezier curve of degree n is defined by (n + 1) control points, and is a parametric line based on a single parameter t, which ranges between 0 and 1.
+            </p>
+
+
+            <div class="text-center ">
+              <img class=" w-100 rounded" src="../../assets/img/cs184/proj_2/part1_diagram.png" alt="" width="400">
+              <p class="small opacity-50">de Casteljau algorithm tree visual</p>
+            </div>
+
+            <p>
+              In this part of the project, I implemented de Casteljau algorithm. Using the last curve in the evaluatedLevels list, I loop through each point and calculate a point in the new level using the algorithm pt(i) * (1 - t) + pt(i + 1) * t.
+              With this algorithm I create a new vector that has 1 less point than the previous level.
+            </p>
+
+            <p>
+              Essentially what I are doing is recursively splitting the line at some point of the line using the parameter t. After each iteration, I are able to create new control points. This loop is run until the final point is evaluated. Below
+              you can see the process of creating the different control points. Each picture shows a new evaluated level.
+            </p>
+
+            <div class="text-center ">
+              <img class=" w-100 rounded" src="../../assets/img/cs184/proj_2/part1_normal.png" alt="" width="400">
+              <p class="small opacity-50">Level N</p>
+            </div>
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part1_step1.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">Level N-1</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part1_step2.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">Level N-2</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part1_step3.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">Level N-3</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part1_step4.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">Level N-4</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </br>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part1_step5.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">Level N-5</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part1_modified.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">point manipulated</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </br>
+            <h2 align="left">Part 2: Bezier surfaces with separable 1D de Casteljau subdivision</h2>
+
+            <p>Similarly, a Bezier surface of degree (n, m) is defined by (n + 1)(m + 1) control points, and is a parametric surface based on two parameters u and v, both still ranging between 0 and 1.
+            </p>
+            <p>
+              Using de Casteljau's algorithm, I can evaluate these parametric curves and surfaces for any given set of parameters. In this part of the project, I use the basic Bezier curve algorithm to build Bezier surfaces. I use the <strong>separable
+                1D de Casteljau </strong>algorithm
+            </p>
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part2_diagram.png" align="middle" width="400px" />
+            </div>
+            <p>
+              I implement this part of the project I first looping through each row. For each row I use a helper function evaluate1D that uses de Casteljau algorithm to evaluate the final point. After each row has been evaluated, I then use de
+              Casteljau subdivision to interpolate on the final points.
+            </p>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part2_mesh.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">rendered teapot</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part2_shaded.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">shaded teapot</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </br>
+</br>
+</br>
+            <h1 align="left">Section II: Loop Subdivision of General Triangle Meshes</h1>
+            <p>
+              In this section of the project, I use triangles instead of 2D grids. Instead of being constrained by 2D grids, I are able to look at a single triangle and get access to all other triangles because they are connected by edges and vertices.
+            </p>
+
+            <h2 align="left">Part 3: Average normals for half-edge meshes</h2>
+
+            <p>The goal of this part of the project is to get normal vectors at vertices to get a smoother look when shading rather than the flat surfaces. At each vertex, I loop through the outgoing edges, take the cross product of the neighboring edges. I take the sum of these area-weighted normal in a variable then normalized the unit vector. This gets us the approximation for the normal of that vertex.
+            </p>
+
+            <p>Below you can see the difference between rendering with and without OpenGL. In the bottom photos the meshes are a lot more smoother than the ones on top. This helps the meshes look more realistic</p>
+
+
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part3_rendered.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">rendered</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class=" rounded" src="../../assets/img/cs184/proj_2/part3_shaded_rendered.png" align="middle" width="400px" />
+                    <p class="small opacity-50">shaded rendered</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </br>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part3_smooth.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">rendered with smoothed edges</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class=" rounded" src="../../assets/img/cs184/proj_2/part3_shaded_smooth.png" align="middle" width="400px" />
+                    <p class="small opacity-50">shaded rendered with smooth edges</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <h2 align="left">Part 4: Half-edge flip</h2>
+
+            <p>In this part of the project, I work on flipping edges. Below are visual representations of goals for this part of the project.
+            </p>
+
+
+            <div class="text-center ">
+              <img class=" w-100 rounded" src="../../assets/img/cs184/proj_2/part4_diagram.jpeg" alt="" width="400">
+              <p class="small opacity-50">Visual representation of flip</p>
+            </div>
+
+            <p>
+            In the top example, the 2 pairs of triangles are ABC and CBD. After the flips, the new triangles are ADC and ABD.
+            </p>
+
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part4_before_and_after.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">Diagram showing the changed edges/vertices/half-edges</p>
+            </div>
+
+            <p>
+              Using the method of traversing through the triangles, I reassign the vertices, edges, and half-edges by pointing pointers to its modified element. In this process there was no need to recreate a new element. So first I save the current pointers and then reassign the elements to its modified element.
+            </p>
+
+            <p>
+              Below you can see the effect of the edge flipping. In the top photos you can see the flip of the edge. In the bottom photos, you can see the result of the edge flip and how it changed the look of the cube.
+            </p>
+
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part4_original.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">Original</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class=" rounded" src="../../assets/img/cs184/proj_2/part4_flipped.png" align="middle" width="400px" />
+                    <p class="small opacity-50">flipped edge</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part4_example.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">original 3D model</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class=" rounded" src="../../assets/img/cs184/proj_2/part4_example_flipped.png" align="middle" width="400px" />
+                    <p class="small opacity-50">flipped edge original 3D model</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <p>
+              Reassigning these elements could get ugly if you don’t keep track of what should be reassigned to what. Referring to the diagram above helped declutter the mess of knowing what needed to be reassigned. Another thing that helped was reassigning everything first just so I knew it worked and then later going back and deleting whatever we didn’t need.
+            </p>
+
+            <h2 align="left">Part 5: Half-edge split</h2>
+            <p>
+              In this part of the project, I work on splitting edges. Below is a visual representation of the goal for this part of the project.
+            </p>
+
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part5_diagram.jpeg" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">splitting diagram</p>
+            </div>
+            <p>
+              In the top example, the 2 pairs of triangles are ABC and CBD with one edge BC. After the split, the new triangles are AMC, CDM, DMB, and ABM.
+            </p>
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part5_reference.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">Image result for edge splitting diagram</p>
+            </div>
+            <p>
+              Using the method of traversing through the triangles, I reassign the vertices, edges, and half-edges by pointing pointers to its modified element. Unlike flipping edges, we had to add a new vertex, 3 more edges, and 6 more half-edges. So first I save the current pointers, create the new elements, and then reassign the elements to its modified element.
+            </p>
+
+            <p>
+              Below you can see the effect of the edge splitting. In the top left photo you see the original edge. In the top right edge, you see the effect of splitting the edge. It splits the edge and creates 3 more edges totaling in 4 faces. In the bottom photo you can see the result of the edge flipping and edge splitting and ultimately how it changes the look of the cube.
+            </p>
+
+
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part5_original.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">original edge</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part5_split.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">edge after split</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part5_flip_and_splits.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">flips and splitting</p>
+            </div>
+
+            <h2 align="left">Part 6: Loop subdivision for mesh upsampling</h2>
+            <p>
+              In the process of loop sampling we want to take take a simple polygon with low resolution and loop subdivision using interpolation.
+            </p>
+            <p>This process requires 2 steps:
+            </p>
+            <ol>
+              <li>Split the triangle into four parts by connecting the midpoints as shown below
+                <div class="gallery-item text-center ">
+                  <img class="rounded" src="../../assets/img/cs184/proj_2/part6_diagram_1.jpg" align="middle" width="400px" />
+                  <p class="small opacity-50 mb-20">split to 4 parts</p>
+                </div>
+              </li>
+                  <li>Update the vertex position as a weighted average of the neighboring positions.
+                    <div class="gallery-item text-center ">
+                      <img class="rounded" src="../../assets/img/cs184/proj_2/part6_diagram_2.jpg" align="middle" width="400px" />
+                      <p class="small opacity-50 mb-20">averaged vertex positions</p>
+                    </div>
+                  </li>
+            </ol>
+
+            <p>
+              As you recursively applying these steps, the object will become smoother and smoother.
+            </p>
+            <p>
+              Essentially what we are doing is splitting all the edges of the mesh and then flipping is the edge has a point on a new and old vertex. Below is an illustration of what that looks like.
+            </p>
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part6_diagram_3.jpg" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">Visualization of subdivision</p>
+            </div>
+            <p>
+              For implementing this idea:
+            </p>
+            <ol>
+              <li>Loop through the vertices and mark them to false. </li>
+              <li>Compute the sum of neighboring vertex positions and then compute the vertex’s new position and store them in Vertex::newPosition. </li>
+              <li> Loop through all the edges and mark them as false </li>
+              <li>Compute the new positions of the vertices that will be the midpoint of the edges and store them in Edge::newPosition</li>
+              <li>Loop through all the isNew == false edges and split them if not a boundary edge. Then we mark the new vertex as isNew = true and the new edges as isNew = true. Finally set the new vertex to the new position of the edge split</li>
+              <li>Loop through the edges and flip any new edge is it is connected to an old and new vertex. </li>
+              <li>copy the Vertex::newPosition to Vertex::position</li>
+              <li>Loop through every vertex and edge and set isNew = false</li>
+            </ol>
+            <p>Below are some examples of loop subdivision that shows what the object looks like iteration by iteration.</p>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_cow_1.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">cow with no subdiving</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_cow_2.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">cow with subdiving</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part6_cow_3.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">cow more subdividing</p>
+            </div>
+            <p>By the following example you can see how at each step each face is subdivided and each iteration looks smoother relative to its previous iteration. </p>
+
+            <p>Below we smooth the edges of the cube but even when we iteratively subdivide we still get asymmetric sides.</p>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_1.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">cube with no subdiving</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_2.png" align="middle" width="400px" />
+                    <!-- <p class="small opacity-50 mb-20">cube with no subdiving</p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_3.png" align="middle" width="400px" />
+                    <!-- <p class="small opacity-50 mb-20">cube with no subdiving</p> -->
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_4.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">asymmetric</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>By pre-splitting the edges we can lessen the smoothing effect and create more sharper edges. Below you can see the effect of pre-splitting.</p>
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_2/part6_sharpedge_1.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">cube splitting</p>
+            </div>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_sharpedge_2.png" align="middle" width="400px" />
+                    <!-- <p class="small opacity-50 mb-20">cube splitting</p> -->
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_sharpedge_3.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">cube sharper edges</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>To lessen the asymmetric effect, we can pre-process the cube by flipping and splitting the mesh before upsampling. In the example below we can see that after loop subdivision the cube looks more symmetric. </p>
+
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_1.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">cube with splitting</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_2.png" align="middle" width="400px" />
+                    <!-- <p class="small opacity-50 mb-20">symmetric cube</p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <div class="row container mb-20">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_3.png" align="middle" width="400px" />
+                    <!-- <p class="small opacity-50 mb-20">cube with splitting</p> -->
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_2/part6_asymmetric_4.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">symmetric cube</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gap-y align-items-center">
+
+        <div class="col-6 col-lg-3">
+          <!-- <a href="index.html"><img src="assets/img/logo-dark.png" alt="logo"></a> -->
+        </div>
+
+        <div class="col-6 col-lg-3 text-right order-lg-last">
+          <div class="social">
+            <a class="social-linkedin" href="https://www.linkedin.com/in/ashley-nguyen-15a799125/"><i class="fa fa-linkedin"></i></a>
+            <a class="social-instagram" href="https://www.instagram.com/ash_dezign"><i class="fa fa-instagram"></i></a>
+            <a class="social-github" href="https://github.com/ashleynguyen27"><i class="fa fa-github"></i></a>
+            <a class="social-dribbble" href="https://dribbble.com/ashleynguyen27"><i class="fa fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="nav nav-bold nav-uppercase nav-trim justify-content-lg-center">
+            <a class="nav-link" href="computer_graphics.html">Computer Graphics</a>
+            <a class="nav-link" href="block/index.html">Design</a>
+            <a class="nav-link" href="page/about.html">About</a>
+            <a class="nav-link" href="blog/grid.html">Blog</a>
+            <a class="nav-link" href="page/contact.html">Contact</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer><!-- /.footer -->
+
+
+
+
+</body>
+
+</html>
