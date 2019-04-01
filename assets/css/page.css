@@ -1,6 +1,8 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Dosis:200,400,500,600");
 @import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
 :root {
   --blue: #50a1ff;
   --indigo: #6610f2;
@@ -38,7 +40,8 @@
           box-sizing: border-box; }
 
 html {
-  font-family: 'Karla', sans-serif !important;
+  font-family: 'Arvo', serif;
+
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
