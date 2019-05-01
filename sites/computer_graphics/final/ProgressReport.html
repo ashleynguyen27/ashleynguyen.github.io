@@ -97,63 +97,49 @@
 
         <div class="row">
           <div class="col-lg-8 mx-auto">
+            <p>
+              This is our final project milestone website writeup.<br>
+              Our slides can be found <a href ="https://docs.google.com/presentation/d/1mP11lscBEgCid4lg2UyoW3J-_w93G_afhmKjug5-yQQ/edit#slide=id.p">here</a>,
+              video <a href="https://www.youtube.com/watch?v=lT0aEVPlis8&ab_channel=ZWANG">here</a>,
+              repo <a href="https://github.com/jenzou/Fluid-Simulator">here</a>.
+              </p>
 
             <h2 align="left">Accomplishments</h2>
-            <p>Some things we’ve accomplished so far is learning fluid simulation, understanding
-              the algorithm, and trying out different platforms. We referenced the Macklin and Muller
-              paper which helped us learn a lot. In this process we learned the smooth particle hydrodynamics
-              (SPH) and particle based dynamics or Grid-based and Particle-based frameworks. </p>
+            <p>Some things we’ve accomplished so far are learning fluid simulation, understanding the constant-density solver algorithm, and trying to develop our code on different platforms. We referenced the Macklin and Muller paper which has been of great help. In this process, we learned how smooth particle hydrodynamics (SPH) and particle based dynamics work, as well as the differences between Grid-based and Particle-based frameworks.  </p>
             <p>
-              To understand the algorithm, we referenced a lot of outside resources for the math heavy parts and
-              understanding some of the physics such as constant density constraints, artificial pressure, vorticity
-              confinement,Jacobi Iteration, Newton's Method, smoothing kernels, etc. We were able to implement the
-              algorithm and data structures in plain code as a model.
+              To understand the specifics of the solver algorithm, we went through lots of different research papers which cover different steps that Macklin and Muller build upon. We had to brush up on some physics and math concepts for incompressibility constraints, artificial pressure, vorticity confinement, Newton's Method, smoothing kernels, etc. To really understand the algorithm and identify relevant data structures, we developed a rough implementation in Java as a model to follow in the production environment.
             </p>
             <p>
-              In the beginning of our project, we tested out different platforms such as WebGL and starter code from a CMU project. Initially, we tried WebGL. However, we found difficulty implementing the GPU optimization for live rendering and interaction, performing surfacing and rendering. Typically, WebGL incorporates a grid/velocity-field based approach. Currently, we are evaluating whether or not to use the starter code from CMU. Debugging this on the Mac and Linux instructional machines has been proven difficult.
+              In the beginning of our project, we tested out different platforms such as WebGL (with three.js) as well as starter code from a CMU project in C. Initially we tried WebGL; however, there was a nontrivial learning curve, and we were warned by TA’s of potential difficulty implementing GPU optimization for live rendering and interaction, not to mention performing surfacing and rendering. Typically, WebGL examples incorporate a grid/velocity-field based approach, and only function with low particle counts. Currently, we are evaluating whether or not to use the starter code from CMU. Just setting up the starter code on the Mac and Linux instructional machines has proven difficult due to configuring library imports and architecture errors.
             </p>
 
             <h2 align="left">Position-Based Fluid Simulation</h2>
 
             <p>
-              One setback for the progress on this project this far, was a lot of things came up and our schedules didn’t match up. So unfortunately, we started a little later than we anticipated.
+              One setback we encountered was our schedules didn’t match up for the first few weeks, and we started a little later than anticipated.
             </p>
 
             <p>
-              From the get-go we were very excited to create this fluid simulation. However, we realized we miscalculated the difficulty of the project. We underestimated the amount of work and time that would be needed for this project as we began to look more into it. There are many parts to the project that are each difficult on its own. These include: Particle simulation, surfacing, rendering, shading, and GPU optimization. In addition, there is a lot of technology that we are not familiar with and learning on the go. In addition, we are very limited by our resources we have access to. Most of the resources we are sourcing from is computation fluid dynamics form 184 staff and online references. We found that our online resources are dense and have a variety of approaches.
-              </p>
+            From the get-go we were very excited to create a beautiful fluid demo; however, we really just didn’t understand what the project entailed. We underestimated the amount of work and time that would be needed, and as we began to look more into it we found several components--each fairly  challenging on its own: particle simulation, boundary reconstruction, rendering, shading, and GPU optimization. In addition, there’s a lot of technology that we are not familiar with and learning on the go adds latency. In addition, we’re pretty limited by resources, as this is a pretty niche method, largely outside the domain of 184 staff. Online resources are designed for researchers in the field so they’re a little dense, and each introduces new concepts and different approaches to learn.              </p>
 
 
             <p>
-              Another issue we have been struggling with is setting up our environment. Initially, we had planned to use WebGL but because learning it was very time intensive we chose not to. We found starter code from a class project that helped crutch us for basic tasks like camera perspective and shader integration. Finding this alternative was rather time consuming and contributed to our delay.
-              </p>
+              Another issue we have been struggling with is setting up our environment. As described earlier, WebGL didn’t seem to be a good path. Thankfully, we found a few sources of starter code which are both more accessible and incomplete enough for us to make significant further contributions. Nonetheless, this process of trial and error and research took some time.              </p>
 
 
               <h2 align="left">Work Plan updates</h2>
 
               <p>
-                As we move forward, we are going to work on changing a few things. First, considering what the project is asking, we are going to scope down. We are going to focus on understanding and implementing the particle simulation model. To save time, we will also outsource rendering and shading using Blender. Also, we will be using starter code instead of starting from scratch.               </p>
-
+                As we move forward, we’re making big changes to the plan. First, we’re going to scope down. The most important aspect of this project is understanding and implementing the particle simulation model. To save time, we can outsource rendering and shading using Blender. Using starter code will also save time, especially with structural components like camera perspective and shader integration.
               <p>
-                From the first proposal, we are changing our approach to mirror CMU’s simulation and build on top of it. We’ve decided to remove the live demo and concentrate more on making sure we have a running simulation. For the simulation, we are constructing the components using cube marching. And always be open for changes.
-              </p>
+                Our current path to integrate Macklin and Muller’s concepts into an existing project, and then build on top of it. We’ve decided to remove the live demo and concentrate more on making sure we have a working simulation.              </p>
 
 
               <p>
-                We are making a plan to split up tasks. However, what’s made it difficult is the structure of the pipeline makes it difficult to work in parallel. We are going to try to make a list of tasks needed to be done and assign a group member to it.
-              </p>
+                We also need to do better on divvying tasks. While the pipeline nature of graphics projects makes it difficult to work in parallel, we’re going to try and break components down into more granular tasks that can be assigned to individual members.              </p>
 
 
-              <h2 align="left">Appendix</h2>
               <div>
-              <a href="https://docs.google.com/presentation/d/1mP11lscBEgCid4lg2UyoW3J-_w93G_afhmKjug5-yQQ/edit#slide=id.g590a38c131_4_44">slides</a>
-                </div>
-                <div>
-                <a href="https://github.com/jenzou/Fluid-Simulator">github</a>
-                </div>
-                <div>
-                <a href="">video</a>
-                </div>
             </div>
           </div
         </div>
