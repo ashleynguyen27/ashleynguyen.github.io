@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>Ashley's Website</title>
+
+  <!-- Styles -->
+  <link href="../../../assets/css/page.css" rel="stylesheet">
+  <link href="../../../assets/css/style.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="../../../assets/js/page.js"></script>
+  <script src="../../../assets/js/script.js"></script>
+
+  <!-- Favicons -->
+  <!-- <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" href="assets/img/favicon.png"> -->
+
+  <!--  Open Graph Tags -->
+  <meta property="og:title" content="Ashley's website">
+  <meta property="og:description" content="Website all about Ashley">
+  <meta property="og:url" content="http://ashleynguyen27.github.io">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-stick-dark" data-navbar="sticky">
+    <div class="container">
+
+      <div class="navbar-left">
+        <button class="navbar-toggler" type="button">&#9776;</button>
+        <a class="navbar-brand" href="../../index.html">
+          <img width="50" src="../../assets/img/logo.png" alt="logo">
+        </a>
+      </div>
+
+
+      <section class="navbar-mobile ">
+        <!-- <span class="navbar-divider d-mobile-none"></span> -->
+
+        <ul class="nav nav-navbar ">
+            <li class="nav-item">
+            <a class="nav-link" href="../sites/computer_graphics.html">Computer Graphics</span></a>
+            <nav class="nav column-1">
+              <a class="nav-link" href="../rasterizer.html">Rasterizer</a>
+              <a class="nav-link" href="../mesh_editor.html">Mesh editor</a>
+              <a class="nav-link" href="../pathtracer.html">Raytracer</a>
+            </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="sites/design.html">Design Portfolio</a>
+            <nav class="nav column-1">
+              <a class="nav-link" href="../../artic.html">Artic</a>
+              <a class="nav-link" href="../../bungeetech.html">BungeeTech</a>
+              <a class="nav-link" href="../../koh.html">Köh</a>
+            </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../../blog.html">Blogs</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../../resume.html">Resume </a>
+          </li>
+
+        </ul>
+      </section>
+    </div>
+  </nav>
+
+
+
+
+  <!-- Main Content -->
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="section">
+      <div class="container">
+
+
+        <div class="text-center mt-8">
+          <h1 style="font-family: 'Karla', sans-serif;">Final Project: Progress Report</h1>
+          <p> Ashley Nguyen | Jennifer Zou | Z Wang </p>
+        </div>
+
+        <div class="text-center my-8">
+          <img class="rounded-md" src="../../../assets/img/cs184/final/PBD.jpg" alt="...">
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+
+            <h1 align="left">Accomplishments</h1>
+            <p>Some things we’ve accomplished so far is learning fluid simulation, understanding
+              the algorithm, and trying out different platforms. We referenced the Macklin and Muller
+              paper which helped us learn a lot. In this process we learned the smooth particle hydrodynamics
+              (SPH) and particle based dynamics or Grid-based and Particle-based frameworks. </p>
+            <p>
+              To understand the algorithm, we referenced a lot of outside resources for the math heavy parts and
+              understanding some of the physics such as constant density constraints, artificial pressure, vorticity
+              confinement,Jacobi Iteration, Newton's Method, smoothing kernels, etc. We were able to implement the
+              algorithm and data structures in plain code as a model.
+            </p>
+            <p>
+              In the beginning of our project, we tested out different platforms such as WebGL and starter code from a CMU project. Initially, we tried WebGL. However, we found difficulty implementing the GPU optimization for live rendering and interaction, performing surfacing and rendering. Typically, WebGL incorporates a grid/velocity-field based approach. Currently, we are evaluating whether or not to use the starter code from CMU. Debugging this on the Mac and Linux instructional machines has been proven difficult.
+            </p>
+
+            <h1 align="left">Position-Based Fluid Simulation</h1>
+
+            <p>
+              One setback for the progress on this project this far, was a lot of things came up and our schedules didn’t match up. So unfortunately, we started a little later than we anticipated.
+            </p>
+
+            <p>
+              From the get-go we were very excited to create this fluid simulation. However, we realized we miscalculated the difficulty of the project. We underestimated the amount of work and time that would be needed for this project as we began to look more into it. There are many parts to the project that are each difficult on its own. These include: Particle simulation, surfacing, rendering, shading, and GPU optimization. In addition, there is a lot of technology that we are not familiar with and learning on the go. In addition, we are very limited by our resources we have access to. Most of the resources we are sourcing from is computation fluid dynamics form 184 staff and online references. We found that our online resources are dense and have a variety of approaches.
+              </p>
+
+
+            <p>
+              Another issue we have been struggling with is setting up our environment. Initially, we had planned to use WebGL but because learning it was very time intensive we chose not to. We found starter code from a class project that helped crutch us for basic tasks like camera perspective and shader integration. Finding this alternative was rather time consuming and contributed to our delay.
+              </p>
+
+
+              <h1 align="left">Work Plan updates</h1>
+
+              <p>
+                As we move forward, we are going to work on changing a few things. First, considering what the project is asking, we are going to scope down. We are going to focus on understanding and implementing the particle simulation model. To save time, we will also outsource rendering and shading using Blender. Also, we will be using starter code instead of starting from scratch.               </p>
+
+              <p>
+                From the first proposal, we are changing our approach to mirror CMU’s simulation and build on top of it. We’ve decided to remove the live demo and concentrate more on making sure we have a running simulation. For the simulation, we are constructing the components using cube marching. And always be open for changes.
+              </p>
+
+
+              <p>
+                We are making a plan to split up tasks. However, what’s made it difficult is the structure of the pipeline makes it difficult to work in parallel. We are going to try to make a list of tasks needed to be done and assign a group member to it.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gap-y align-items-center">
+
+        <div class="col-6 col-lg-3">
+          <!-- <a href="index.html"><img src="assets/img/logo-dark.png" alt="logo"></a> -->
+        </div>
+
+        <div class="col-6 col-lg-3 text-right order-lg-last">
+          <div class="social">
+            <a class="social-linkedin" href="https://www.linkedin.com/in/ashley-nguyen-15a799125/"><i class="fa fa-linkedin"></i></a>
+            <a class="social-instagram" href="https://www.instagram.com/ash_dezign"><i class="fa fa-instagram"></i></a>
+            <a class="social-github" href="https://github.com/ashleynguyen27"><i class="fa fa-github"></i></a>
+            <a class="social-dribbble" href="https://dribbble.com/ashleynguyen27"><i class="fa fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="nav nav-bold nav-uppercase nav-trim justify-content-lg-center">
+            <a class="nav-link" href="../computer_graphics.html">Computer Graphics</a>
+            <a class="nav-link" href="../../index.html">Design</a>
+            <a class="nav-link" href="../blog.html">About</a>
+            <a class="nav-link" href="../blog.html">Blog</a>
+            <a class="nav-link" href="../blog.html">Contact</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer><!-- /.footer -->
+
+
+
+
+</body>
+
+</html>
