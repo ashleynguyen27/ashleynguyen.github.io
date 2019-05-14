@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>Ashley's Website</title>
+
+  <!-- Styles -->
+  <link href="../../assets/css/page.css" rel="stylesheet">
+  <link href="../../assets/css/style.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="../../assets/js/page.js"></script>
+  <script src="../../assets/js/script.js"></script>
+
+  <!--  Open Graph Tags -->
+  <meta property="og:title" content="Ashley's website">
+  <meta property="og:description" content="Website all about Ashley">
+  <meta property="og:url" content="http://ashleynguyen27.github.io">
+</head>
+
+<body >
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-stick-dark" data-navbar="sticky">
+    <div class="container">
+
+      <div class="navbar-left">
+        <button class="navbar-toggler" type="button">&#9776;</button>
+        <a class="navbar-brand" href="../../index.html">
+          <img width="50" src="../../assets/img/logo.png" alt="logo">
+        </a>
+      </div>
+
+
+      <section class="navbar-mobile ">
+        <!-- <span class="navbar-divider d-mobile-none"></span> -->
+
+        <ul class="nav nav-navbar ">
+            <li class="nav-item">
+            <a class="nav-link" href="sites/computer_graphics.html">Computer Graphics</span></a>
+            <nav class="nav column-1">
+              <a class="nav-link" href="rasterizer.html">Rasterizer</a>
+              <a class="nav-link" href="mesh_editor.html">Mesh editor</a>
+              <a class="nav-link" href="pathtracer.html">Raytracer</a>
+            </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="sites/design.html">Design Portfolio</a>
+            <nav class="nav column-1">
+              <a class="nav-link" href="../artic.html">Artic</a>
+              <a class="nav-link" href="../bungeetech.html">BungeeTech</a>
+              <a class="nav-link" href="../koh.html">Köh</a>
+            </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../blog.html">Blogs</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../resume.html">Resume </a>
+          </li>
+
+        </ul>
+      </section>
+    </div>
+  </nav>
+
+
+
+
+
+  <!-- Main Content -->
+  <main class="main-content" >
+    <div class="section">
+      <div class="container">
+        <div class="text-center mt-8">
+          <h1 style="font-family: 'Karla', sans-serif;">Project 3: Pathtracer 2</h1>
+          <p>Ashley Nguyen | CS184-agh </p>
+        </div>
+
+        <div class="text-center my-4">
+          <img class=" col-lg-8 rounded-md" src="../../assets/img/cs184/proj_3_2/lightning_mcqueen.jpeg" alt="...">
+        </div>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h1 align="left">Overview</h1>
+            <p>In this project, I add more features such as materials, environment lighting, and camera simulation.
+            <h2 align="left">Part 1: Mirror and Glass</h2>
+
+            <p>
+              In this part of the project I implement mirror and glass models with both reflection and refraction. The reflection
+            </p>
+
+            <p>
+              Below are pictures of the same picture with different number of bounces. With different bounces we are able to see different effects.
+            </p>
+
+            <p>
+              At max_ray_depth = 0, we only have direct lighting. This is why we can not see the spheres or the ceiling.
+            </p>
+
+            <p>
+              At max_ray_depth = 1, there is some reflection on the spheres. The mirror is mostly working like what we’d expect. The only thing missing on the mirror ball is the white reflection from the ceiling. The glass ball still looks a little dark. The only bounces we can see are from the bounces that are immediately reflected.
+            </p>
+
+            <div class="row container ">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_3_2/part1_0.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">0 max_ray_depth</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part1_1.png" align="middle" width="400px" />
+                    <p class="small opacity-50">1 max_ray_depth</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </br>
+            <p>
+              At max_ray_depth = 2, the mirror sphere we are now able to see the white ceiling being reflected. We also see the bottom the sphere is almost black and doesn’t look exactly like it’s supposed to. In the glass sphere, we are able to see through the sphere. However, it looks like the light is not able to go through the sphere.
+            </p>
+
+            <p>
+              At max_ray_depth = 3, for the mirror sphere we see the reflection on the bottom of the sphere is lighter. The glass sphere now allows the light to go through and now illuminates the shadow. This action now shows because 4 bounces is needed from the camera to the floor then into the sphere then out the sphere onto the wall.
+            </p>
+
+
+            <div class="row container ">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_3_2/part1_2.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">2 max_ray_depth</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part1_3.png" align="middle" width="400px" />
+                    <p class="small opacity-50">3 max_ray_depth</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </br>
+
+          <p>
+            At max_ray_depth = 4, the mirror ball has not changed much except has gotten brighter at the bottom. With more bounces between the ball and the floor, this is how this is possible. The glass ball has now caused a bright dot on the blue wall.
+          </p>
+
+          <p>
+            At max_ray_depth = 5, there is not much change however there does look like there is more noise. This is the result of increasing the number of bounces. Because of this we get a more refractions and reflections causing this weird effect.
+          </p>
+
+          <div class="row container ">
+            <div class="wx-auto col-lg-12">
+              <div class="gallery ">
+                <div class="gallery-item text-center ">
+                  <img class="rounded" src="../../assets/img/cs184/proj_3_2/part1_4.png" align="middle" width="400px" />
+                  <p class="small opacity-50 mb-20">4 max_ray_depth</p>
+                </div>
+                <div class="gallery-item text-center ">
+                  <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part1_5.png" align="middle" width="400px" />
+                  <p class="small opacity-50">5 max_ray_depth</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </br>
+
+        <p>
+          At max_ray_depth = 100, we see the details of the spheres looking closer to natural.
+        </p>
+
+
+        <h2 align="left">Part 2: Microfacet Materials </h2>
+        <p>
+          Below are examples of the dragon photo with various alpha values. The higher the alpha the more brushed the sculpture looked while the lower the alpha the more reflective and shiny the material looked. In addition, noise increased as alpha got smaller.
+        </p>
+
+        <p>
+          At alpha = 0.5, it looks very diffused and looks more brushed.
+        </p>
+
+        <p>
+          At alpha = 0.25, this is starting to look a little more shinier. It looks a little less brushed than the 0.5 picture.
+        </p>
+
+        <div class="row container ">
+          <div class="wx-auto col-lg-12">
+            <div class="gallery ">
+              <div class="gallery-item text-center ">
+                <img class="rounded" src="../../assets/img/cs184/proj_3_2/part2_5.png" align="middle" width="400px" />
+                <p class="small opacity-50 mb-20">alpha = 0.5</p>
+              </div>
+              <div class="gallery-item text-center ">
+                <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part2_25.png" align="middle" width="400px" />
+                <p class="small opacity-50">alpha = 0.25</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </br>
+
+      <p>
+        At alpha = 0.05, this has a lot more shinier material than the 0.25 example. In this pic, we also get a little more noise.
+      </p>
+
+      <p>
+        At alpha = 0.005, I get a lot more noise. The model has a mirror type of look to it; it is a lot more shinier and glossier.
+      </p>
+
+      <div class="row container ">
+        <div class="wx-auto col-lg-12">
+          <div class="gallery ">
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_3_2/part2_05.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">alpha = 0.05</p>
+            </div>
+            <div class="gallery-item text-center ">
+              <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part2_005.png" align="middle" width="400px" />
+              <p class="small opacity-50">alpha = 0.005</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </br>
+
+    <p>
+      Below is are rendered pictures of the bunny using uniform cosine hemisphere sampling and importance sampling. Using uniform cosine hemisphere sampling we get extra noise whereas in the importance sampling we have less noise and can see the material more clearly
+    </p>
+
+    <div class="row container ">
+      <div class="wx-auto col-lg-12">
+        <div class="gallery ">
+          <div class="gallery-item text-center ">
+            <img class="rounded" src="../../assets/img/cs184/proj_3_2/part2_uniform.png" align="middle" width="400px" />
+            <p class="small opacity-50 mb-20">uniform cosine hemisphere sampling</p>
+          </div>
+          <div class="gallery-item text-center ">
+            <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part2_importance.png" align="middle" width="400px" />
+            <p class="small opacity-50">importance sampling</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </br>
+
+  <p>
+    Below I rendered the same dragon image but using variables of an aluminum material. For eta I use [1.3352 1.0109 0.68955], for k I use [7.3398 6.6157 5.6471] and alpha I use 0.005.
+  </p>
+
+  <div class="gallery-item text-center ">
+    <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part2_aluminum.png" align="middle" width="400px" />
+    <p class="small opacity-50">Aluminum</p>
+  </div>
+
+
+  <h2 align="left">Part 3: Environment Light </h2>
+
+  <p>
+    In this part of the project I will implement an importance sampling scheme for environment lights. Environment lights with large variation in incoming light intensities will have significantly less noise with good importance sampling. The basic idea is that each pixel in the environment map gets assigned a probability based on the total flux passing through the solid angle it represents.
+  </p>
+
+  <p>
+    We used 2 different samplings: uniform and importance. Uniform sampling sampled a random direction on the sphere and checked the environment map’s radiance. Importance sampling was biased based on the concentration in the direction of bright lights. This significantly lowered the noise of the renders.
+  </p>
+
+  <p>
+    Below is the image of the environment we use. The image on the right is the probability_debug.png file which is generated using the function that initializes the probability distributions.
+  </p>
+
+  <div class="row container ">
+    <div class="wx-auto col-lg-12">
+      <div class="gallery ">
+        <div class="gallery-item text-center ">
+          <img class="rounded" src="../../assets/img/cs184/proj_3_2/part3_environment.jpeg" align="middle" width="400px" />
+          <p class="small opacity-50 mb-20">Environment File</p>
+        </div>
+        <div class="gallery-item text-center ">
+          <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part3_probability.png" align="middle" width="400px" />
+          <p class="small opacity-50">probability_debug.png</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</br>
+
+<p>
+  Below are the rendered images of bunny_unlit.dae. The uniform sampling image is a little more noisier than the importance sampling.
+</p>
+
+<div class="gallery-item text-center ">
+  <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part3_uniform.png" align="middle" width="400px" />
+  <p class="small opacity-50">Uniform sampling</p>
+</div>
+</br>
+
+<div class="gallery-item text-center ">
+  <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part3_importance.png" align="middle" width="400px" />
+  <p class="small opacity-50">Importance sampling</p>
+</div>
+</br>
+
+<p>
+  Below are the rendered images of bunny_microfacet_cu_unlit.dae. The uniform sampling image is a little more noisier than the importance sampling. In addition, the importance sampling looks a little more shiner and the details of the model look more detailed.
+</p>
+
+<div class="gallery-item text-center ">
+  <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part3_uniform2.png" align="middle" width="400px" />
+  <p class="small opacity-50">Uniform sampling</p>
+</div>
+</br>
+
+<div class="gallery-item text-center ">
+  <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part3_importance2.png" align="middle" width="400px" />
+  <p class="small opacity-50">Importance sampling</p>
+</div>
+</br>
+
+
+<h2 align="left">Part 4: Depth of Field</h2>
+<p>
+  The pinhole camera model everything in the camera is in focus. On the other hand, a thin-lens camera model simulates the effects a real camera will create. A camera normally focuses on one point of the image and refracts on other points.
+</p>
+
+<h5 align="left">Focus Length</h2>
+<p>
+  Below are images of various focal length. This focuses on different parts of the model.
+</p>
+
+<div class="row container ">
+  <div class="wx-auto col-lg-12">
+    <div class="gallery ">
+      <div class="gallery-item text-center ">
+        <img class="rounded" src="../../assets/img/cs184/proj_3_2/part4_fl_5.png" align="middle" width="400px" />
+        <p class="small opacity-50 mb-20">focus length = 0.5</p>
+      </div>
+      <div class="gallery-item text-center ">
+        <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part4_fl_12.png" align="middle" width="400px" />
+        <p class="small opacity-50">focus length = 1.2</p>
+      </div>
+    </div>
+  </div>
+</div>
+</br>
+
+<div class="row container ">
+  <div class="wx-auto col-lg-12">
+    <div class="gallery ">
+      <div class="gallery-item text-center ">
+        <img class="rounded" src="../../assets/img/cs184/proj_3_2/part4_fl_32.png" align="middle" width="400px" />
+        <p class="small opacity-50 mb-20">focus length = 3.2</p>
+      </div>
+      <div class="gallery-item text-center ">
+        <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part4_fl_72.png" align="middle" width="400px" />
+        <p class="small opacity-50">focus length = 7.2</p>
+      </div>
+    </div>
+  </div>
+</div>
+</br>
+
+
+<h5 align="left">Aperture Sizes</h2>
+<p>
+  Below are images of various aperture size with the same focal length. The image gets blurrier and the depth of field becomes shallower.
+</p>
+
+
+<div class="row container ">
+  <div class="wx-auto col-lg-12">
+    <div class="gallery ">
+      <div class="gallery-item text-center ">
+        <img class="rounded" src="../../assets/img/cs184/proj_3_2/part4_a_12.png" align="middle" width="400px" />
+        <p class="small opacity-50 mb-20">aperture = 1.2</p>
+      </div>
+      <div class="gallery-item text-center ">
+        <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part4_a_125.png" align="middle" width="400px" />
+        <p class="small opacity-50">aperture = 1.25</p>
+      </div>
+    </div>
+  </div>
+</div>
+</br>
+
+<div class="row container ">
+  <div class="wx-auto col-lg-12">
+    <div class="gallery ">
+      <div class="gallery-item text-center ">
+        <img class="rounded" src="../../assets/img/cs184/proj_3_2/part4_a_13.png" align="middle" width="400px" />
+        <p class="small opacity-50 mb-20">aperture = 1.3</p>
+      </div>
+      <div class="gallery-item text-center ">
+        <img class=" rounded" src="../../assets/img/cs184/proj_3_2/part4_a_135.png" align="middle" width="400px" />
+        <p class="small opacity-50">aperture = 1.35</p>
+      </div>
+    </div>
+  </div>
+</div>
+</br>
+
+
+
+
+
+
+</main>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gap-y align-items-center">
+
+        <div class="col-6 col-lg-3">
+          <!-- <a href="index.html"><img src="assets/img/logo-dark.png" alt="logo"></a> -->
+        </div>
+
+        <div class="col-6 col-lg-3 text-right order-lg-last">
+          <div class="social">
+            <a class="social-linkedin" href="https://www.linkedin.com/in/ashley-nguyen-15a799125/"><i class="fa fa-linkedin"></i></a>
+            <a class="social-instagram" href="https://www.instagram.com/ash_dezign"><i class="fa fa-instagram"></i></a>
+            <a class="social-github" href="https://github.com/ashleynguyen27"><i class="fa fa-github"></i></a>
+            <a class="social-dribbble" href="https://dribbble.com/ashleynguyen27"><i class="fa fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="nav nav-bold nav-uppercase nav-trim justify-content-lg-center">
+            <a class="nav-link" href="../computer_graphics.html">Computer Graphics</a>
+            <a class="nav-link" href="../../index.html">Design</a>
+            <a class="nav-link" href="../blog.html">About</a>
+            <a class="nav-link" href="../blog.html">Blog</a>
+            <a class="nav-link" href="../blog.html">Contact</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer><!-- /.footer -->
+
+
+
+
+</body>
+
+</html>

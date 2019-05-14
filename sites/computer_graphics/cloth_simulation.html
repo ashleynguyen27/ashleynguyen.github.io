@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>Ashley's Website</title>
+
+  <!-- Styles -->
+  <link href="../../assets/css/page.css" rel="stylesheet">
+  <link href="../../assets/css/style.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="../../assets/js/page.js"></script>
+  <script src="../../assets/js/script.js"></script>
+
+  <!-- Favicons -->
+  <!-- <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" href="assets/img/favicon.png"> -->
+
+  <!--  Open Graph Tags -->
+  <meta property="og:title" content="Ashley's website">
+  <meta property="og:description" content="Website all about Ashley">
+  <meta property="og:url" content="http://ashleynguyen27.github.io">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-stick-dark" data-navbar="sticky">
+    <div class="container">
+
+      <div class="navbar-left">
+        <button class="navbar-toggler" type="button">&#9776;</button>
+        <a class="navbar-brand" href="../../index.html">
+          <img width="50" src="../../assets/img/logo.png" alt="logo">
+        </a>
+      </div>
+
+
+      <section class="navbar-mobile ">
+        <!-- <span class="navbar-divider d-mobile-none"></span> -->
+
+        <ul class="nav nav-navbar ">
+            <li class="nav-item">
+            <a class="nav-link" href="sites/computer_graphics.html">Computer Graphics</span></a>
+            <nav class="nav column-1">
+              <a class="nav-link" href="rasterizer.html">Rasterizer</a>
+              <a class="nav-link" href="mesh_editor.html">Mesh editor</a>
+              <a class="nav-link" href="pathtracer.html">Raytracer</a>
+            </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="sites/design.html">Design Portfolio</a>
+            <nav class="nav column-1">
+              <a class="nav-link" href="../artic.html">Artic</a>
+              <a class="nav-link" href="../bungeetech.html">BungeeTech</a>
+              <a class="nav-link" href="../koh.html">Köh</a>
+            </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../blog.html">Blogs</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="../resume.html">Resume </a>
+          </li>
+
+        </ul>
+      </section>
+    </div>
+  </nav>
+
+
+
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="section">
+      <div class="container">
+
+
+        <div class="text-center mt-8">
+          <h1 style="font-family: 'Karla', sans-serif;">Project 4: Cloth Simulation</h1>
+          <p>Ashley Nguyen | CS184-agh </p>
+        </div>
+
+        <div class="text-center my-8">
+          <img class="rounded-md" src="../../assets/img/cs184/proj_4/overview.jpeg" alt="...">
+          <p>
+            The Blue Umbrella
+          </p>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+
+            <h2 align="left">Overview</h1>
+            <p>
+              In this project, I implement a real-time simulation of cloth using a mass and spring based system. I built the data structures that discretely represent the cloth, define and apply physical constraints on them, and apply numerical integration to simulate the way cloth moves over time. Finally, I implement collisions with other objects as well as self-collisions to prevent cloth clipping.
+            </p>
+
+            <h2 align="left">Part 1: Masses and springs </h2>
+            <p>
+              In this part of the project, I build the physical model of the cloth. To do this, we include the grid of masses and springs. Given the dimension and parameters, we build evenly spaced point masses and connect neighboring masses with springs.
+            </p>
+
+            <p>
+              To build the grid of masses and springs, I start by producing the evenly spaced point masses. For this I use num_width_points and num_height_points for the number of point masses that will span the width and height. Based on the orientation, we set the coordinates differently. If the orientation is HORIZONTAL then we set the y coordinate to 1 and the position is set on the xz plane. It the orientation is VERTICAL then we set the z coordinate to a random number between [-1/1000, 1/1000] and the position on the xy plane.
+            </p>
+
+            <p>
+              Lastly, we create springs between the point masses. We create structural constraints between a point mass and the one on its left and above. We also create shearing constraints between a point mass and the one above diagonally to the left and right. Finally, we create bending constraints between a point mass and the point mass 2 point masses away to its left and above.
+            </p>
+
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_4/part1_diagram.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">Level N-1</p>
+            </div>
+
+            <p>
+              Below are rendered photos of a cloth wireframe. Each show the wireframe with different constraints.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part1_wireframe.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">cloth wireframe - with all constraints</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part1_no_shearing.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">without shearing</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part1_shearing.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">only shearing</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <h2 align="left">Part 2: Simulation via numerical integration</h2>
+            <p>
+              In this part of the project, we integrate the physical equations of motion to apply the forces on the point masses. We calculate how they move from one time step to the other. We first need to calculate the forces on each point mass. We calculate the total of all the external accelerations. Then we apply the spring correction forces using Hooke’s law. Then we adjust the actual positions of each mass using Verlet integration to approximate the position at this next time step. To make sure the positions don’t stretch we make sure the spring length is at most 10% more of the rest_length.
+            </p>
+
+            <p>
+              When experimenting with the parameters, we see the final rendered image looks different.
+            </p>
+
+            <h5>Spring Constant (k_s)</h5>
+            <p>
+              When we change the spring constant parameter, we see the cloth looks tighter and the elasticity changes as we increase or decrease the density. The lower the spring constant the more elastic it becomes. The higher the spring constant the tighter and less elastic the cloth is.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_ks_500.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">k_s = 500</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_ks_5000.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">k_s = 5000</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_ks_50000.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">k_s = 50000</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <h5>Density</h5>
+            <p>
+              When we change the density parameter, we see a change to the cloth opposite to the spring constant. We we the higher the density the more the middle of the cloth dips in. This indicates that it is less stiff and is more malleable when pinned.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_density_75.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">density = 7.5 g/cm^2</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_density_15.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">density = 15 g/cm^2</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_density_30.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">density = 30 g/cm^2</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <h5>Damping</h5>
+            <p>
+              When we change the damping of a cloth, the final stage is very similar to each other. However, the damping parameter varies through the process of the cloth falling. When damping is low the cloth falls faster. It swings and wrinkles more. When the damping is high the cloth slower and swings less.
+            </p>
+
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_damping_0.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">damping = 0%</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_damping_2.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">damping = .2%</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part2_damping_1.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">damping = 1%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              Below is the image of the cloth with the preset parameters when the cloth is pinned on all 4 corners
+            </p>
+
+            <div class="text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_4/part2_damping_1.png" align="middle" width="400px" />
+            </div>
+          </br>
+
+            <h2 align="left">Part 3: Handling collisions with other objects</h2>
+            <p>
+              In this part of the project, we calculate collisions of the cloth with various objects. We do this by testing if the point on the cloth lies on or inside the object. If it does then we move the point above the object. We do this by calculating the tangent point along the object based on the vector formed from the last position to the current position. (Or if the object is a sphere then we use the vector from the center of the sphere to the current position.
+            </p>
+
+            <p>
+              Below are rendered images of a cloth covering a sphere. In this we include various ks values.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part3_50.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">ks = 50</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part3_500.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">ks = 500</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part3_5000.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">ks = 5000</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part3_500000.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">ks = 50000</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part3_500000.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">ks = 500000</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              As we increase the spring constant,  we notice that the cloth becomes stiffer and there are also less folds. As we decrease the spring constant, we notice the cloth wraps around the sphere and there are more folds.
+            </p>
+
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_4/part3_cloth.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">cloth on plane</p>
+            </div>
+
+
+            <h2 align="left">Part 4: Handling self-collisions</h2>
+            <p>
+              In this part of the project, I handle the case where the cloth self-collides. Before this part, the cloth will fall on itself and clip through and behaves unnaturally. The cloth falls on itself, ignores itself, and then falls on the plane.
+            </p>
+
+            <p>
+              To do this, we implement the spatial hashing. At each time step, I build a hash table which maps a float to a PointMass vector.  The float represents some point in the 3D map. Using the map, we loop through the PointMasses, find the PointMasses each PointMass shares the 3D volume with and apply repulsive collision force the the pair is close.
+            </p>
+
+            <p>
+              Below are rendered images of the cloth with varying parameters.
+            </p>
+
+
+            <h5> <u> Spring Constant</u></h5>
+            <p>
+              <strong> ks = 50,000</strong>
+            </p>
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_50000_start.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">start</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_50000_mid.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">mid</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_50000_final.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">final</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              <strong> ks = 5,000</strong>
+            </p>
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_5000_start.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">start</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_5000_mid.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">mid</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_5000_final.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">final</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+
+            <p>
+              <strong> ks = 500</strong>
+            </p>
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_500_start.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">start</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_500_mid.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">mid</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_500_final.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">final</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              As we decrease the spring constant, the cloth falls with more wrinkles and more folds. The cloth looks more crumpled but at the end unfolds itself. As we increase the spring constant, the cloth falls with less but bigger folds. The cloth is more stable and stiffer. The final state looks crispier and has more folds.
+            </p>
+
+            <h5> <u> Density</u></h5>
+            <p>
+              <strong> Density = 1.5g/cm^2</strong>
+            </p>
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_1_5_start.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">start</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_1_5_mid.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">mid</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_1_5_final.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">final</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              <strong> Density = 15 g/cm^2</strong>
+            </p>
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery gallery-3-type1 ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_15_start.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">start</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_15_mid.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">mid</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part4_15_final.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">final</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              As we decrease the density, we get the same effect as increasing the spring constant. The cloth looks more crumpled but at the end unfolds itself. As we increase the density, the cloth falls with less but has bigger folds. This effect is similar to decreasing the spring constant.
+            </p>
+
+            <h2 align="left">Part 5: Shaders</h2>
+            <p>
+              In this part of the project, we create GLSL shader programs to accelerate the time it takes to render a frame with realistic lighting. We implement Diffuse, Blinn-Phong, Texture Mapping, Bump & Displacement Map, and Mirror shaders.
+            </p>
+
+            <p>
+              OpenGL allows us to define shaders. These shader programs run in parallel on the GPU which allows you to define different steps of the rasterization pipeline. There are 2 types of basic OpenGL shaders: a vertex shader and a fragment shader.
+            </p>
+
+            <p>
+              Vertex shaders generally apply transforms to vertices that effect the geometric properties. This includes the position and normal vectors. This helps with making a bumps and the overall geometric shape of the objects look realistic.
+            </p>
+
+            <p>
+              The fragment shader takes in the properties of a fragment calculated by the vertex shader and computes a color using shading models.
+            </p>
+
+            <p>
+              One of the shading models we use is Blinn-Phong. This computes the fragment color using an ambient light component, a diffuse component and a specular reflection component.
+            </p>
+
+            <p>
+              Below are rendered images of the cloth on the sphere. In the examples above we isolate each component mentioned in the Blinn-Phong model.
+            </p>
+
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_ambient.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">only ambient light component</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_diffuse.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">only diffuse component</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_specular.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">only specular component</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_blinn_phong.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">Blinn-Phong model</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              Below is a rendered image of the texture mapping shader.
+            </p>
+
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_4/part5_texture.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">Storforsen</p>
+            </div>
+
+            <p>
+              Below is a rendered image of bump mapping on the cloth and on the sphere.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_bumping_sphere.png" align="middle" width="400px" />
+                    <!-- <p class="small opacity-50 mb-20">only specular component</p> -->
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_bumping_cloth.png" align="middle" width="400px" />
+                    <!-- <p class="small opacity-50 mb-20">Blinn-Phong model</p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              In the next render, I compare the bump mapping on the sphere with the displacement mapping on the sphere. Looking at the 2, side by side, we can see the 2 objects have relatively the same outline. However, you can see with the modifications in displacement, it displaces the geometry and so the positions of the vertices of the fragments have changed as well.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_bump.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">bump</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_displacement.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">displacement</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              Next, I compare how different shaders act differently when the mesh’s coarseness is modified. I use the parameters -o 16 -a 16 and then -o 128 -a 128.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_c_16_sphere.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 16</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_c_16_cloth.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 16</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_c_128_sphere.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 128</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_c_128_cloth.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 128</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              There is very little change between the 2 images. The light that shines on the sphere when the coarseness is changed to 128 looks more diffused. In addition, the sphere on the right looks more realistic and sharper.
+            </p>
+
+            <p>
+              Below are renders of the displacement mapping shader with various coarseness.
+            </p>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_d_16_sphere.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 16</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_d_16_cloth.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 16</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <div class="row container mb-20 w-100">
+              <div class="wx-auto col-lg-12">
+                <div class="gallery ">
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_d_128_sphere.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 128</p>
+                  </div>
+                  <div class="gallery-item text-center ">
+                    <img class="rounded" src="../../assets/img/cs184/proj_4/part5_d_128_cloth.png" align="middle" width="400px" />
+                    <p class="small opacity-50 mb-20">coarseness 128</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+
+            <p>
+              The displacement in the mesh that has a higher coarseness is very obvious. The higher the coarseness the more  displacement we get of points. The lower the coarseness the less coarse the mesh is.
+            </p>
+
+            <p>
+              Below is a rendered image of the mirror shader on the cloth and on the sphere.
+            </p>
+
+            <div class="gallery-item text-center ">
+              <img class="rounded" src="../../assets/img/cs184/proj_4/part5_mirror.png" align="middle" width="400px" />
+              <p class="small opacity-50 mb-20">Mirror</p>
+            </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gap-y align-items-center">
+
+        <div class="col-6 col-lg-3">
+          <!-- <a href="index.html"><img src="assets/img/logo-dark.png" alt="logo"></a> -->
+        </div>
+
+        <div class="col-6 col-lg-3 text-right order-lg-last">
+          <div class="social">
+            <a class="social-linkedin" href="https://www.linkedin.com/in/ashley-nguyen-15a799125/"><i class="fa fa-linkedin"></i></a>
+            <a class="social-instagram" href="https://www.instagram.com/ash_dezign"><i class="fa fa-instagram"></i></a>
+            <a class="social-github" href="https://github.com/ashleynguyen27"><i class="fa fa-github"></i></a>
+            <a class="social-dribbble" href="https://dribbble.com/ashleynguyen27"><i class="fa fa-dribbble"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="nav nav-bold nav-uppercase nav-trim justify-content-lg-center">
+            <a class="nav-link" href="../computer_graphics.html">Computer Graphics</a>
+            <a class="nav-link" href="../../index.html">Design</a>
+            <a class="nav-link" href="../blog.html">About</a>
+            <a class="nav-link" href="../blog.html">Blog</a>
+            <a class="nav-link" href="../blog.html">Contact</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer><!-- /.footer -->
+
+
+
+
+</body>
+
+</html>
